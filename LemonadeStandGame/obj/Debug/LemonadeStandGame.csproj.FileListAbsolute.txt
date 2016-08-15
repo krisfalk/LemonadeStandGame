@@ -1,0 +1,6 @@
+C:\Users\Kristofer\Desktop\devCodeCamp\C#\LemonadeStandGame\LemonadeStandGame\bin\Debug\LemonadeStandGame.exe.config
+C:\Users\Kristofer\Desktop\devCodeCamp\C#\LemonadeStandGame\LemonadeStandGame\bin\Debug\LemonadeStandGame.exe
+C:\Users\Kristofer\Desktop\devCodeCamp\C#\LemonadeStandGame\LemonadeStandGame\bin\Debug\LemonadeStandGame.pdb
+C:\Users\Kristofer\Desktop\devCodeCamp\C#\LemonadeStandGame\LemonadeStandGame\obj\Debug\LemonadeStandGame.csprojResolveAssemblyReference.cache
+C:\Users\Kristofer\Desktop\devCodeCamp\C#\LemonadeStandGame\LemonadeStandGame\obj\Debug\LemonadeStandGame.exe
+C:\Users\Kristofer\Desktop\devCodeCamp\C#\LemonadeStandGame\LemonadeStandGame\obj\Debug\LemonadeStandGame.pdb
