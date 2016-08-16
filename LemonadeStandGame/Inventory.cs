@@ -13,8 +13,10 @@ namespace LemonadeStandGame
         public int numIce;
         public int numCups;
         public double lemonadePrice;
+        public int pitcher;
         public Inventory()
         {
+            pitcher = 0;
             lemonadePrice = 0;
             numLemons = 0;
             numSugar = 0;

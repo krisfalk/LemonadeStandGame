@@ -2,71 +2,148 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace LemonadeStandGame
 {
     class Customer
     {
-        protected string type;
-        public Customer()
+        public int customerNumber;
+        public Customer(int number)
         {
-            
+            customerNumber = number;
         }
-        public string GetCustomerType()
+        public bool ToBuyOrNot(Inventory current, Weather currentDay, Player player1)
         {
-            return type;
-        }
-        public bool ToBuyOrNot(Inventory current, Weather currentDay)
-        {
-            if(CheckWeatherType(currentDay) < 60 && current.lemonadePrice <= 20)
+            Thread.Sleep((int)TimeSpan.FromSeconds(.2).TotalMilliseconds);
+            Random random = new Random();
+            if(currentDay.CheckWeatherType() < 60 && current.lemonadePrice <= .20)
             {
-                //1 in 4 buys if amount of lemons and sugar per pitch are within 3
-                //improves to 1 in 2 buys if ice per cup is with in 2 of ten total
-                //everyone buys if there is 8 lemons, 8 sugar, and 10 ice cubes
+                if(player1.lemonRecipe - player1.sugarRecipe <= 3 && player1.lemonRecipe - player1.sugarRecipe >= -3)
+                {
+                    if(player1.iceRecipe >= 8 && player1.iceRecipe <= 12)
+                    {
+                        if(player1.lemonRecipe == 8 && player1.sugarRecipe == 8 && player1.iceRecipe == 10)
+                        {
+                            return true;
+                        }
+                        else
+                        {
+                            if (random.Next(1, 4) == 1) { return true; } else { return false; }
+                        }
+                    }else if (random.Next(1, 5) == 1) { return true; } else { return false; }
+                } else if (random.Next(1, 6) == 1) { return true; } else { return false; }
             }
-            else if (CheckWeatherType(currentDay) < 70 && current.lemonadePrice <= 25)
+            else if (currentDay.CheckWeatherType() < 70 && current.lemonadePrice <= .25)
             {
-                //1 in 4 buys if amount of lemons and sugar per pitch are within 3
-                //improves to 1 in 2 buys if ice per cup is with in 2 of ten total
-                //everyone buys if there is 8 lemons, 8 sugar, and 10 ice cubes
+                {
+                    if (player1.lemonRecipe - player1.sugarRecipe <= 3 && player1.lemonRecipe - player1.sugarRecipe >= -3)
+                    {
+                        if (player1.iceRecipe >= 8 && player1.iceRecipe <= 12)
+                        {
+                            if (player1.lemonRecipe == 8 && player1.sugarRecipe == 8 && player1.iceRecipe == 10)
+                            {
+                                return true;
+                            }
+                            else
+                            {
+                                if (random.Next(1, 4) == 1) { return true; } else { return false; }
+                            }
+                        }
+                        else if (random.Next(1, 5) == 1) { return true; } else { return false; }
+                    }
+                    else if (random.Next(1, 6) == 1) { return true; } else { return false; }
+                }
             }
-            else if (CheckWeatherType(currentDay) < 80 && current.lemonadePrice <= 30)
+            else if (currentDay.CheckWeatherType() < 80 && current.lemonadePrice <= .30)
             {
-                //1 in 4 buys if amount of lemons and sugar per pitch are within 3
-                //improves to 1 in 2 buys if ice per cup is with in 2 of ten total
-                //everyone buys if there is 8 lemons, 8 sugar, and 10 ice cubes
+                {
+                    if (player1.lemonRecipe - player1.sugarRecipe <= 3 && player1.lemonRecipe - player1.sugarRecipe >= -3)
+                    {
+                        if (player1.iceRecipe >= 8 && player1.iceRecipe <= 12)
+                        {
+                            if (player1.lemonRecipe == 8 && player1.sugarRecipe == 8 && player1.iceRecipe == 10)
+                            {
+                                return true;
+                            }
+                            else
+                            {
+                                if (random.Next(1, 4) == 1) { return true; } else { return false; }
+                            }
+                        }
+                        else if (random.Next(1, 5) == 1) { return true; } else { return false; }
+                    }
+                    else if (random.Next(1, 6) == 1) { return true; } else { return false; }
+                }
             }
-            else if (CheckWeatherType(currentDay) < 90 && current.lemonadePrice <= 35)
+            else if (currentDay.CheckWeatherType() < 90 && current.lemonadePrice <= .35)
             {
-                //1 in 4 buys if amount of lemons and sugar per pitch are within 3
-                //improves to 1 in 2 buys if ice per cup is with in 2 of ten total
-                //everyone buys if there is 8 lemons, 8 sugar, and 10 ice cubes
+                {
+                    if (player1.lemonRecipe - player1.sugarRecipe <= 3 && player1.lemonRecipe - player1.sugarRecipe >= -3)
+                    {
+                        if (player1.iceRecipe >= 8 && player1.iceRecipe <= 12)
+                        {
+                            if (player1.lemonRecipe == 8 && player1.sugarRecipe == 8 && player1.iceRecipe == 10)
+                            {
+                                return true;
+                            }
+                            else
+                            {
+                                if (random.Next(1, 4) == 1) { return true; } else { return false; }
+                            }
+                        }
+                        else if (random.Next(1, 5) == 1) { return true; } else { return false; }
+                    }
+                    else if (random.Next(1, 6) == 1) { return true; } else { return false; }
+                }
             }
-            else if (CheckWeatherType(currentDay) > 89 && current.lemonadePrice <= 40)
+            else if (currentDay.CheckWeatherType() > 89 && current.lemonadePrice <= .40)
             {
-                //1 in 4 buys if amount of lemons and sugar per pitch are within 3
-                //improves to 1 in 2 buys if ice per cup is with in 2 of ten total
-                //everyone buys if there is 8 lemons, 8 sugar, and 10 ice cubes
+                {
+                    if (player1.lemonRecipe - player1.sugarRecipe <= 3 && player1.lemonRecipe - player1.sugarRecipe >= -3)
+                    {
+                        if (player1.iceRecipe >= 8 && player1.iceRecipe <= 12)
+                        {
+                            if (player1.lemonRecipe == 8 && player1.sugarRecipe == 8 && player1.iceRecipe == 10)
+                            {
+                                return true;
+                            }
+                            else
+                            {
+                                if (random.Next(1, 4) == 1) { return true; } else { return false; }
+                            }
+                        }
+                        else if (random.Next(1, 5) == 1) { return true; } else { return false; }
+                    }
+                    else if (random.Next(1, 6) == 1) { return true; } else { return false; }
+                }
             }
             else
             {
+                {
+                    if (player1.lemonRecipe - player1.sugarRecipe <= 3 && player1.lemonRecipe - player1.sugarRecipe >= -3)
+                    {
+                        if (player1.iceRecipe >= 8 && player1.iceRecipe <= 12)
+                        {
+                            if (player1.lemonRecipe == 8 && player1.sugarRecipe == 8 && player1.iceRecipe == 10)
+                            {
+                                if(random.Next(1, 10) == 1) { return true; } else { return false; }
+                            }
+                            else
+                            {
+                                if (random.Next(1, 13) == 1) { return true; } else { return false; }
+                            }
+                        }
+                        else if (random.Next(1, 16) == 1) { return true; } else { return false; }
+                    }
+                    else if (random.Next(1, 21) == 1) { return true; } else { return false; }
+                }
                 //without right price for tempurature only 1 in 20
                 //improves to 1 in 12 buys if ice per cup is within 2 of ten total
                 //1 in 10 buys if there is 8 lemons, 8 sugar, and 10 ice cubes
             }
         }
-        public int CheckWeatherType(Weather currentDay)
-        {
-            switch (currentDay.weatherType)
-            {
-                case "sunny":
-                    return currentDay.temperature;
-                case "rainy":
-                    return currentDay.temperature - 10;
-                default:
-                    return currentDay.temperature - 5;
-            }
-        }
+        
     }
 }

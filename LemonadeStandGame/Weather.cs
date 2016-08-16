@@ -36,5 +36,17 @@ namespace LemonadeStandGame
                     break;
             }
         }
+        public int CheckWeatherType()
+        {
+            switch (weatherType)
+            {
+                case "sunny":
+                    return temperature;
+                case "rainy":
+                    return temperature - 10;
+                default:
+                    return temperature - 5;
+            }
+        }
     }
 }

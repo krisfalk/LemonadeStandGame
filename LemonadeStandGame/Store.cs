@@ -159,7 +159,7 @@ namespace LemonadeStandGame
                         }
                         break;
                     case 40:
-                        if (newMoneyTotal > 2.12)
+                        if (newMoneyTotal > 2.80)
                         {
                             totalSugar = totalSugar + 40;
                             newMoneyTotal = newMoneyTotal - 2.80;
@@ -184,7 +184,7 @@ namespace LemonadeStandGame
             
             while (buyingIce)
             {
-                Console.WriteLine("You have ${0}.\nEnter how many ice cubes do you want to buy? (0, 100 for $0.80, 250 for $2.00, 400 for $3.28)", newMoneyTotal);
+                Console.WriteLine("You have ${0}.\nEnter how many ice cubes do you want to buy? (0, 100 for $0.80, 250 for $2.00, 400 for $3.20)", newMoneyTotal);
                 int buyIce = Convert.ToInt32(Console.ReadLine());
                 switch (buyIce)
                 {
