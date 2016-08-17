@@ -12,7 +12,7 @@ namespace LemonadeStandGame
         public string weatherType;
         public Weather()
         {
-
+            ChangeWeather();
         }
         public void ChangeWeather()
         {

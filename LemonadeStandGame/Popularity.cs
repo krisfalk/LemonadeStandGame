@@ -88,6 +88,10 @@ namespace LemonadeStandGame
                     popularityLevel = 100;
                 }
             }
+            else
+            {
+                popularityLevel += 25;
+            }
             Console.WriteLine("Your popularity level is at {0}%.", popularityLevel);
         }
     }

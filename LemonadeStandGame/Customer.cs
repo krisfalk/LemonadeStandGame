@@ -14,11 +14,11 @@ namespace LemonadeStandGame
         {
             customerNumber = number;
         }
-        public bool ToBuyOrNot(Inventory current, Weather currentDay, Player player1)
+        public bool ToBuyOrNot(Store current, Weather currentDay, Player player1)
         {
             Thread.Sleep((int)TimeSpan.FromSeconds(.2).TotalMilliseconds);
             Random random = new Random();
-            if(currentDay.CheckWeatherType() < 60 && current.lemonadePrice <= .20)
+            if(currentDay.CheckWeatherType() < 60 && current.lemonadePrice <= .30)
             {
                 if(player1.lemonRecipe - player1.sugarRecipe <= 3 && player1.lemonRecipe - player1.sugarRecipe >= -3)
                 {
@@ -35,7 +35,7 @@ namespace LemonadeStandGame
                     }else if (random.Next(1, 5) == 1) { return true; } else { return false; }
                 } else if (random.Next(1, 6) == 1) { return true; } else { return false; }
             }
-            else if (currentDay.CheckWeatherType() < 70 && current.lemonadePrice <= .25)
+            else if (currentDay.CheckWeatherType() < 70 && current.lemonadePrice <= .45)
             {
                 {
                     if (player1.lemonRecipe - player1.sugarRecipe <= 3 && player1.lemonRecipe - player1.sugarRecipe >= -3)
@@ -56,7 +56,7 @@ namespace LemonadeStandGame
                     else if (random.Next(1, 6) == 1) { return true; } else { return false; }
                 }
             }
-            else if (currentDay.CheckWeatherType() < 80 && current.lemonadePrice <= .30)
+            else if (currentDay.CheckWeatherType() < 80 && current.lemonadePrice <= .60)
             {
                 {
                     if (player1.lemonRecipe - player1.sugarRecipe <= 3 && player1.lemonRecipe - player1.sugarRecipe >= -3)
@@ -77,7 +77,7 @@ namespace LemonadeStandGame
                     else if (random.Next(1, 6) == 1) { return true; } else { return false; }
                 }
             }
-            else if (currentDay.CheckWeatherType() < 90 && current.lemonadePrice <= .35)
+            else if (currentDay.CheckWeatherType() < 90 && current.lemonadePrice <= .75)
             {
                 {
                     if (player1.lemonRecipe - player1.sugarRecipe <= 3 && player1.lemonRecipe - player1.sugarRecipe >= -3)
@@ -98,7 +98,7 @@ namespace LemonadeStandGame
                     else if (random.Next(1, 6) == 1) { return true; } else { return false; }
                 }
             }
-            else if (currentDay.CheckWeatherType() > 89 && current.lemonadePrice <= .40)
+            else if (currentDay.CheckWeatherType() > 89 && current.lemonadePrice <= .90)
             {
                 {
                     if (player1.lemonRecipe - player1.sugarRecipe <= 3 && player1.lemonRecipe - player1.sugarRecipe >= -3)

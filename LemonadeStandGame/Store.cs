@@ -8,10 +8,20 @@ namespace LemonadeStandGame
 {
     class Store
     {
-        
+        public double lemonadePrice;
         public Store()
         {
 
+        }
+        public void SetSellPrice()
+        {
+            Console.WriteLine("What would you like to set the price of lemonade at for today? \n(Price should be no lower than $0.20 and no higher than $1.00)");
+            double answer = Convert.ToDouble(Console.ReadLine());
+            if(answer >= .2 && answer <= 1.00)
+            {
+                lemonadePrice = answer;
+            }
+            else { SetSellPrice(); }
         }
         public int BuyCups(double totalMoney)
         {
@@ -20,7 +30,7 @@ namespace LemonadeStandGame
             double newMoneyTotal = totalMoney;
             while (buyingCups)
             {
-                Console.WriteLine("You have ${0}.\nEnter how many Cups you want to buy? (0, 25 for $1.00, 50 for $2.00, 100 for $4.00)", newMoneyTotal);
+                Console.WriteLine("You have ${0}.\nEnter how many Cups you want to buy? (0, 25 for $0.75, 50 for $1.50, 100 for $3.00)", newMoneyTotal);
                 int buyCups = Convert.ToInt32(Console.ReadLine());
                 switch (buyCups)
                 {
@@ -28,10 +38,10 @@ namespace LemonadeStandGame
                         buyingCups = false;
                         break;
                     case 25:
-                        if (newMoneyTotal > 1.00)
+                        if (newMoneyTotal > .75)
                         {
                             totalCups = totalCups + 25;
-                            newMoneyTotal = newMoneyTotal - 1.00;
+                            newMoneyTotal = newMoneyTotal - .75;
                         }
                         else
                         {
@@ -39,10 +49,10 @@ namespace LemonadeStandGame
                         }
                         break;
                     case 50:
-                        if (newMoneyTotal > 2.00)
+                        if (newMoneyTotal > 1.50)
                         {
                             totalCups = totalCups + 50;
-                            newMoneyTotal = newMoneyTotal - 2.00;
+                            newMoneyTotal = newMoneyTotal - 1.50;
                         }
                         else
                         {
@@ -50,10 +60,10 @@ namespace LemonadeStandGame
                         }
                         break;
                     case 100:
-                        if (newMoneyTotal > 4.00)
+                        if (newMoneyTotal > 3.00)
                         {
                             totalCups = totalCups + 100;
-                            newMoneyTotal = newMoneyTotal - 4.00;
+                            newMoneyTotal = newMoneyTotal - 3.00;
                         }
                         else
                         {
@@ -74,7 +84,7 @@ namespace LemonadeStandGame
             double newMoneyTotal = totalMoney;
             while (buyingLemons)
             {
-                Console.WriteLine("You have ${0}.\nEnter how many Lemons do you want to buy? (0, 10 for $0.70, 30 for $2.10, 60 for $4.20)", newMoneyTotal);
+                Console.WriteLine("You have ${0}.\nEnter how many Lemons do you want to buy? (0, 10 for $0.60, 30 for $1.80, 60 for $3.60)", newMoneyTotal);
                 int buyLemons = Convert.ToInt32(Console.ReadLine());
                 switch (buyLemons)
                 {
@@ -82,10 +92,10 @@ namespace LemonadeStandGame
                         buyingLemons = false;
                         break;
                     case 10:
-                        if(newMoneyTotal > .70)
+                        if(newMoneyTotal > .60)
                         {
-                            totalLemons = totalLemons + 25;
-                            newMoneyTotal = newMoneyTotal - .70;
+                            totalLemons = totalLemons + 10;
+                            newMoneyTotal = newMoneyTotal - .60;
                         }
                         else
                         {
@@ -93,10 +103,10 @@ namespace LemonadeStandGame
                         }
                         break;
                     case 30:
-                        if (newMoneyTotal > 2.10)
+                        if (newMoneyTotal > 1.80)
                         {
                             totalLemons = totalLemons + 30;
-                            newMoneyTotal = newMoneyTotal - 2.10;
+                            newMoneyTotal = newMoneyTotal - 1.80;
 
                         }
                         else
@@ -105,10 +115,10 @@ namespace LemonadeStandGame
                         }
                         break;
                     case 60:
-                        if (newMoneyTotal > 4.20)
+                        if (newMoneyTotal > 3.60)
                         {
                             totalLemons = totalLemons + 60;
-                            newMoneyTotal = newMoneyTotal - 4.20;
+                            newMoneyTotal = newMoneyTotal - 3.60;
                         }
                         else
                         {
@@ -129,7 +139,7 @@ namespace LemonadeStandGame
             double newMoneyTotal = totalMoney;
             while (buyingSugar)
             {
-                Console.WriteLine("You have ${0}.\nEnter how many cups of sugar do you want to buy? (0, 10 for $0.70, 20 for $1.40, 40 for $2.80)", newMoneyTotal);
+                Console.WriteLine("You have ${0}.\nEnter how many cups of sugar do you want to buy? (0, 10 for $0.60, 20 for $1.20, 40 for $2.40)", newMoneyTotal);
                 int buySugar = Convert.ToInt32(Console.ReadLine());
                 switch (buySugar)
                 {
@@ -137,10 +147,10 @@ namespace LemonadeStandGame
                         buyingSugar = false;
                         break;
                     case 10:
-                        if (newMoneyTotal > .70)
+                        if (newMoneyTotal > .60)
                         {
-                            totalSugar = totalSugar + 25;
-                            newMoneyTotal = newMoneyTotal - .70;
+                            totalSugar = totalSugar + 10;
+                            newMoneyTotal = newMoneyTotal - .60;
                         }
                         else
                         {
@@ -148,10 +158,10 @@ namespace LemonadeStandGame
                         }
                         break;
                     case 20:
-                        if (newMoneyTotal > 1.40)
+                        if (newMoneyTotal > 1.20)
                         {
                             totalSugar = totalSugar + 20;
-                            newMoneyTotal = newMoneyTotal - 1.40;
+                            newMoneyTotal = newMoneyTotal - 1.20;
                         }
                         else
                         {
@@ -159,10 +169,10 @@ namespace LemonadeStandGame
                         }
                         break;
                     case 40:
-                        if (newMoneyTotal > 2.80)
+                        if (newMoneyTotal > 2.40)
                         {
                             totalSugar = totalSugar + 40;
-                            newMoneyTotal = newMoneyTotal - 2.80;
+                            newMoneyTotal = newMoneyTotal - 2.40;
                         }
                         else
                         {
@@ -184,7 +194,7 @@ namespace LemonadeStandGame
             
             while (buyingIce)
             {
-                Console.WriteLine("You have ${0}.\nEnter how many ice cubes do you want to buy? (0, 100 for $0.80, 250 for $2.00, 400 for $3.20)", newMoneyTotal);
+                Console.WriteLine("You have ${0}.\nEnter how many ice cubes do you want to buy? (0, 100 for $0.60, 250 for $1.50, 400 for $2.40)", newMoneyTotal);
                 int buyIce = Convert.ToInt32(Console.ReadLine());
                 switch (buyIce)
                 {
@@ -192,10 +202,10 @@ namespace LemonadeStandGame
                         buyingIce = false;
                         break;
                     case 100:
-                        if (newMoneyTotal > .80)
+                        if (newMoneyTotal > .60)
                         {
                             totalIce = totalIce + 100;
-                            newMoneyTotal = newMoneyTotal - .80;
+                            newMoneyTotal = newMoneyTotal - .60;
                         }
                         else
                         {
@@ -203,10 +213,10 @@ namespace LemonadeStandGame
                         }
                         break;
                     case 250:
-                        if (newMoneyTotal > 2.00)
+                        if (newMoneyTotal > 1.50)
                         {
                             totalIce = totalIce + 250;
-                            newMoneyTotal = newMoneyTotal - 2.00;
+                            newMoneyTotal = newMoneyTotal - 1.50;
                         }
                         else
                         {
@@ -214,10 +224,10 @@ namespace LemonadeStandGame
                         }
                         break;
                     case 400:
-                        if (newMoneyTotal > 3.20)
+                        if (newMoneyTotal > 2.40)
                         {
                             totalIce = totalIce + 400;
-                            newMoneyTotal = newMoneyTotal - 3.20;
+                            newMoneyTotal = newMoneyTotal - 2.40;
                         }
                         else
                         {
