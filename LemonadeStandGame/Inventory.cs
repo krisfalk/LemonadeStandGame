@@ -21,7 +21,7 @@ namespace LemonadeStandGame
             numSugar = 0;
             numIce = 0;
             numCups = 0;
-            Console.WriteLine("Inventory:nCups: {0}\nLemons: {1}\nSugar: {2}\nIce: {3}", numCups, numLemons, numSugar, numIce);
+            Console.WriteLine("Inventory:\nCups: {0}\nLemons: {1}\nSugar: {2}\nIce: {3}", numCups, numLemons, numSugar, numIce);
         }
     }
 }

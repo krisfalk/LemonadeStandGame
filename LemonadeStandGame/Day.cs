@@ -13,8 +13,6 @@ namespace LemonadeStandGame
         public Day()
         {
             dayNum = 0;
-            Console.WriteLine("How many days do you want run your lemonade stand?");
-            totalDays = Convert.ToInt32(Console.ReadLine());
         }
         public int CountDaysLeft()
         {

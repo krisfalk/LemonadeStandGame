@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Media;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -18,23 +19,37 @@ namespace LemonadeStandGame
         Customer[] customers;
         Popularity popularity;
         int cupsPurchased;
-        public Game()
+        SoundPlayer startGame = new SoundPlayer("http://themushroomkingdom.net/sounds/wav/sm3dl/sm3dl_luigi_lets-a_go.wav");
+        public Game(int load)
         {
-            Console.WriteLine("Welcome to Kris' Lemonade Stand Game!!\nWhat is your name?");
-            player1 = new Player(Console.ReadLine());
-            Console.WriteLine("{0} has ${1}", player1.name, player1.money);
-            currentDay = new Day();
-            currentInventory = new Inventory();
-            currentWeather = new Weather();
-            myStore = new Store();
-            popularity = new Popularity();
-            
-            
+            startGame.Play();
+            if (load == 1)
+            {
+                Console.WriteLine("Do you want to load last saved game? (yes or no)");
+                if (Console.ReadLine() == "no")
+                {
+                    Console.WriteLine("Welcome to Kris' Lemonade Stand Game!!\nWhat is your name?");
+                    player1 = new Player(Console.ReadLine());
+                    Console.WriteLine("{0} has ${1}", player1.name, player1.money);
+                    currentDay = new Day();
+                    Console.WriteLine("How many days do you want run your lemonade stand?");
+                    currentDay.totalDays = Convert.ToInt32(Console.ReadLine());
+                    currentInventory = new Inventory();
+                    currentWeather = new Weather();
+                    myStore = new Store();
+                    popularity = new Popularity();
+                }
+                else
+                {
+                    FileReader readSave = new FileReader();
+                }
+            }
         }
         public void RunGame()
         {
             for (int i = 0; i < currentDay.totalDays; i++)
             {
+                SaveOrContinue();
                 customers = new Customer[popularity.BonusCustomers()];
                 Console.Clear();
                 currentDay.dayNum++;
@@ -142,6 +157,36 @@ namespace LemonadeStandGame
         public void PrintWeather()
         {
             Console.WriteLine("Day number {0} of {1}.\nToday's weather is {2} and {3} degrees.\nTomorrow's forcast is {4} and {5} degrees.", currentDay.dayNum, currentDay.totalDays, currentWeather.weatherType, currentWeather.temperature, tomorrowsWeather.weatherType, tomorrowsWeather.temperature);
+        }
+        public void SaveOrContinue()
+        {
+            Console.WriteLine("Type 'yes' to save or press enter to continue.");
+            if(Console.ReadLine() == "yes")
+            {
+                FileWriter save = new FileWriter(currentInventory, currentDay, popularity, player1, currentWeather, tomorrowsWeather);
+            }
+        }
+        public void ResumeGame(string name, double money, int cups, int lemons, int sugar, string currentWeatherType, int currentDegrees, string tomorrowWeatherType, int tomorrowDegrees, int dayNumber, int totalDays, int currentPopularity)
+        {
+            player1 = new Player(name);
+            player1.money = money;
+            currentInventory = new Inventory();
+            currentInventory.numCups = cups;
+            currentInventory.numLemons = lemons;
+            currentInventory.numSugar = sugar;
+            currentWeather = new Weather();
+            currentWeather.weatherType = currentWeatherType;
+            currentWeather.temperature = currentDegrees;
+            tomorrowsWeather = new Weather();
+            tomorrowsWeather.weatherType = tomorrowWeatherType;
+            tomorrowsWeather.temperature = tomorrowDegrees;
+            currentDay = new Day();
+            currentDay.dayNum = dayNumber;
+            currentDay.totalDays = totalDays;
+            popularity = new Popularity();
+            popularity.popularityLevel = currentPopularity;
+            myStore = new Store();
+            RunGame();
         }
     }
 }
