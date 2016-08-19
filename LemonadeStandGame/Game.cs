@@ -19,10 +19,9 @@ namespace LemonadeStandGame
         Customer[] customers;
         Popularity popularity;
         int cupsPurchased;
-        SoundPlayer startGame = new SoundPlayer("http://themushroomkingdom.net/sounds/wav/sm3dl/sm3dl_luigi_lets-a_go.wav");
+        
         public Game(int load)
         {
-            startGame.Play();
             if (load == 1)
             {
                 Console.WriteLine("Do you want to load last saved game? (yes or no)");
@@ -73,16 +72,19 @@ namespace LemonadeStandGame
             PrintAll();
             int cups = myStore.BuyCups(player1.money);
             player1.money = player1.money - cups * .03;
+            player1.moneySpent = player1.moneySpent + cups * .03;
             currentInventory.numCups = currentInventory.numCups + cups;
             Console.Clear();
             PrintAll();
             int lemons = myStore.BuyLemons(player1.money);
             player1.money = player1.money - lemons * .06;
+            player1.moneySpent = player1.moneySpent + lemons * .06;
             currentInventory.numLemons = currentInventory.numLemons + lemons;
             Console.Clear();
             PrintAll();
             int sugar = myStore.BuySugar(player1.money);
             player1.money = player1.money - sugar * .06;
+            player1.moneySpent = player1.moneySpent + sugar * .06;
             currentInventory.numSugar = currentInventory.numSugar + sugar;
             Console.Clear();
             PrintAll();
@@ -90,6 +92,7 @@ namespace LemonadeStandGame
             currentInventory.numIce = 0;
             currentInventory.numIce = myStore.BuyIce(player1.money);
             player1.money = player1.money - currentInventory.numIce * .006;
+            player1.moneySpent = player1.moneySpent + currentInventory.numIce * .006;
             Console.Clear();
         }
         public void SetCustomerBase()
@@ -133,6 +136,7 @@ namespace LemonadeStandGame
                 }
             }
             double dailyEarnings = cupsPurchased * myStore.lemonadePrice;
+            player1.totalIncome = cupsPurchased * myStore.lemonadePrice;
             player1.money += dailyEarnings;
             PrintAll();
             Console.WriteLine("You sold {0} number of cups today and made ${1}.", cupsPurchased, dailyEarnings);
@@ -158,6 +162,15 @@ namespace LemonadeStandGame
         {
             Console.WriteLine("Day number {0} of {1}.\nToday's weather is {2} and {3} degrees.\nTomorrow's forcast is {4} and {5} degrees.", currentDay.dayNum, currentDay.totalDays, currentWeather.weatherType, currentWeather.temperature, tomorrowsWeather.weatherType, tomorrowsWeather.temperature);
         }
+        public Player EndGame()
+        {
+            Console.Clear();
+            player1.liquidate = (currentInventory.numCups * .03) + (currentInventory.numLemons * .06) + (currentInventory.numSugar * .03);
+            player1.profitLoss = (player1.totalIncome - player1.moneySpent) + player1.liquidate;
+            Console.WriteLine("{0}, your final total:\nTotal Income: {1}\nTotal Expenses: {2}\nLiquidated Inventory Value: {3}\nNet Profit/Loss: {4:0.00}", player1.name, player1.totalIncome, player1.moneySpent, player1.liquidate, player1.profitLoss);
+            Console.ReadLine();
+            return player1;
+        }
         public void SaveOrContinue()
         {
             Console.WriteLine("Type 'yes' to save or press enter to continue.");
@@ -166,10 +179,12 @@ namespace LemonadeStandGame
                 FileWriter save = new FileWriter(currentInventory, currentDay, popularity, player1, currentWeather, tomorrowsWeather);
             }
         }
-        public void ResumeGame(string name, double money, int cups, int lemons, int sugar, string currentWeatherType, int currentDegrees, string tomorrowWeatherType, int tomorrowDegrees, int dayNumber, int totalDays, int currentPopularity)
+        public void ResumeGame(string name, double money, double totalIncome, double totalSpent, int cups, int lemons, int sugar, string currentWeatherType, int currentDegrees, string tomorrowWeatherType, int tomorrowDegrees, int dayNumber, int totalDays, int currentPopularity)
         {
             player1 = new Player(name);
             player1.money = money;
+            player1.moneySpent = totalSpent;
+            player1.totalIncome = totalIncome;
             currentInventory = new Inventory();
             currentInventory.numCups = cups;
             currentInventory.numLemons = lemons;
@@ -187,6 +202,7 @@ namespace LemonadeStandGame
             popularity.popularityLevel = currentPopularity;
             myStore = new Store();
             RunGame();
+            EndGame();
         }
     }
 }

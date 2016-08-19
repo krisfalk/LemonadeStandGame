@@ -14,21 +14,26 @@ namespace LemonadeStandGame
         private int dayNumber;
         private int lemons;
         private double money;
+        private double moneySpent;
         private int popularityLevel;
         private int sugar;
         private int tomorrowTemperature;
         private int totalDays;
+        private double totalIncome;
 
         public FileReader()
         {
             // create reader & open file
             TextReader readSave = new StreamReader(".\\savedGame.txt");
-
-            //// read lines of text
+            // read lines of text
             string blank = readSave.ReadLine();
             string name = readSave.ReadLine();
             string money1 = readSave.ReadLine();
             double.TryParse(money1, out money);
+            string moneySpent1 = readSave.ReadLine();
+            double.TryParse(money1, out moneySpent);
+            string totalIncome1 = readSave.ReadLine();
+            double.TryParse(money1, out totalIncome);
             blank = readSave.ReadLine();
             string cups1 = readSave.ReadLine();
             int.TryParse(cups1, out cups);
@@ -52,9 +57,10 @@ namespace LemonadeStandGame
             int.TryParse(dayNumber1, out dayNumber);
             string totalDays1 = readSave.ReadLine();
             int.TryParse(totalDays1, out totalDays);
-            Game game = new Game(0);
-            game.ResumeGame(name, money, cups, lemons, sugar, currentWeatherType, currentTemperature, tomorrowWeatherType, tomorrowTemperature, dayNumber, totalDays, popularityLevel);
             readSave.Close();
+            File.Delete(".\\savedGame.txt");
+            Game game = new Game(0);
+            game.ResumeGame(name, money, totalIncome, moneySpent, cups, lemons, sugar, currentWeatherType, currentTemperature, tomorrowWeatherType, tomorrowTemperature, dayNumber, totalDays, popularityLevel);
         }
     }
 }

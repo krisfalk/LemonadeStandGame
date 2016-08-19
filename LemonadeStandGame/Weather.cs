@@ -19,7 +19,7 @@ namespace LemonadeStandGame
             Random random = new Random();
             Random random1 = new Random();
             temperature = random.Next(50, 100);
-            ChangeWeatherType(random1.Next(1, 4));
+            ChangeWeatherType(random1.Next(1, 5));
         }
         public void ChangeWeatherType(int number)
         {
@@ -30,6 +30,9 @@ namespace LemonadeStandGame
                     break;
                 case 2:
                     weatherType = "rainy";
+                    break;
+                case 3:
+                    weatherType = "Humid";
                     break;
                 default:
                     weatherType = "cloudy";
@@ -44,6 +47,8 @@ namespace LemonadeStandGame
                     return temperature;
                 case "rainy":
                     return temperature - 10;
+                case "humid":
+                    return temperature + 5;
                 default:
                     return temperature - 5;
             }

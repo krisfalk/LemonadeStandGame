@@ -11,11 +11,13 @@ namespace LemonadeStandGame
     {
         public FileWriter(Inventory currentInventory, Day currentDay, Popularity popularity, Player player1, Weather currentWeather, Weather tomorrowsWeather)
         {
-            System.IO.StreamWriter saveGame = new System.IO.StreamWriter(".\\savedGame.txt");
+            TextWriter saveGame = new StreamWriter(".\\savedGame.txt");
 
-            saveGame.WriteLine("Name: Money:");
+            saveGame.WriteLine("Name: Money: Money Spent: Total Income:");
             saveGame.WriteLine(player1.name);
             saveGame.WriteLine(player1.money);
+            saveGame.WriteLine(player1.moneySpent);
+            saveGame.WriteLine(player1.totalIncome);
             saveGame.WriteLine("Inventory in this order: Cups: Lemons: Sugar:");
             saveGame.WriteLine(currentInventory.numCups);
             saveGame.WriteLine(currentInventory.numLemons);
